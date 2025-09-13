@@ -1,0 +1,20 @@
+#ignore environment variable files
+.env
+*.env
+
+#python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.egg-info/
+*.egg
+
+#virtual environment
+node_modules/
+dist/
+build/
+staticfiles/
+
+
