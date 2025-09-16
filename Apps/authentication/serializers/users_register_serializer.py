@@ -16,6 +16,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'phone_number',
+            'edad',
+            'pais',
+            'direccion',
+            'ciudad',
             'avatar_url',
             'password',
             'password2' 
@@ -39,6 +43,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             first_name=validated_data.get('first_name', ''),
             last_name=validated_data.get('last_name', ''),
+            phone_number=validated_data.get('phone_number', ''),
+            avatar_url=validated_data.get('avatar_url', ''),
+            edad=validated_data.get('edad', None),
+            pais=validated_data.get('pais', '')
         )
         user.set_password(validated_data['password'])
         user.save()
