@@ -53,9 +53,11 @@ INSTALLED_APPS = [
     #INSTALACIONES
     'rest_framework',
     'corsheaders',
+    'drf_spectacular',
     
     #APPS
     'Apps.authentication',
+    'Apps.Proyects',
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
@@ -97,12 +99,20 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     "AUTH_HEADER_TYPES": ("Bearer",),
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "BackGenAI",
+    "DESCRIPTION": "API documentation for BackGenAI",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
 }
 
 
