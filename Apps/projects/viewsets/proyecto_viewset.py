@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from Apps.Proyects.models.proyecto import Proyecto
-from Apps.Proyects.serializers.proyecto_serializer import ProyectoSerializer
+from Apps.projects.models.proyecto import Proyecto
+from Apps.projects.serializers.proyecto_serializer import ProyectoSerializer
 from drf_spectacular.utils import extend_schema
 
 @extend_schema(tags=['Proyectos'])

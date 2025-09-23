@@ -1,6 +1,6 @@
 from rest_framework import generics, status, permissions
 from rest_framework.response import Response
-from Apps.authentication.models import User
+from Apps.authentication.models.users import User
 from Apps.authentication.serializers.users_register_serializer import UserRegisterSerializer
 
 

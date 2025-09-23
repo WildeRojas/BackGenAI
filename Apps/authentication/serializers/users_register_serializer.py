@@ -2,7 +2,6 @@ from rest_framework import serializers
 from Apps.authentication.models import User
 
 
-
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
     password2 = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
@@ -18,8 +17,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             'phone_number',
             'edad',
             'pais',
-            'direccion',
-            'ciudad',
             'avatar_url',
             'password',
             'password2' 
