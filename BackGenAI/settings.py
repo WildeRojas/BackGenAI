@@ -15,6 +15,8 @@ import environ
 from dotenv import load_dotenv
 import os
 from urllib.parse import urlparse, parse_qsl
+import dj_database_url
+
 
 load_dotenv()
 
@@ -32,12 +34,12 @@ environ.Env.read_env(env_file=BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f^-l+3k^!tmo=j70szt=5-&!nxtjg_#_sk)5moe!cdp&ua_$nk'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',"insecure-secret")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False').lower() == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 
 # Application definition
@@ -135,15 +137,11 @@ SPECTACULAR_SETTINGS = {
 tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/',''),
-        'USER': tmpPostgres.username,
-        'PASSWORD': tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
-        'OPTIONS': dict(parse_qsl(tmpPostgres.query)),
-    }
+    'default': dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    ) 
 }
 
 
