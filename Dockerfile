@@ -1,5 +1,4 @@
-FROM ghcr.io/railwayapp/nixpacks:python-3.11
-
+FROM python:3.11-slim
 
 # Instalar Python y dependencias del sistema
 RUN apt-get update && \
