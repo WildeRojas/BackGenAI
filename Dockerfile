@@ -1,4 +1,5 @@
-FROM debian:bullseye-slim
+FROM ghcr.io/railwayapp/nixpacks:python-3.11
+
 
 # Instalar Python y dependencias del sistema
 RUN apt-get update && \
