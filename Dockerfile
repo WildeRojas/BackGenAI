@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM ghcr.io/python/python:3.11-slim
 
 # Instalar Python y dependencias del sistema
 RUN apt-get update && \
