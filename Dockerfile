@@ -1,5 +1,5 @@
 # Imagen base con Python 3.11
-FROM python:3.11.9
+FROM python:3.11.9-slim-bullseye
 
 # Establecer directorio de trabajo
 WORKDIR /app
