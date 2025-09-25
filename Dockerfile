@@ -1,23 +1,22 @@
-# Imagen base con Python 3.11
-FROM python:3.10.4-slim-bullseye
+FROM debian:bullseye-slim
 
-# Establecer directorio de trabajo
+# Instalar Python y dependencias del sistema
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip build-essential libpq-dev && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
-
-# Instalar dependencias del sistema (para psycopg2 y compilaciones)
-RUN apt-get update && apt-get install -y build-essential libpq-dev && rm -rf /var/lib/apt/lists/*
 
 # Instalar dependencias de Python
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Copiar el código del proyecto
+# Copiar el código
 COPY . .
 
-# Exponer el puerto
 EXPOSE 8000
 
 # Comando de arranque
-CMD sh -c "python manage.py migrate --noinput && \
-           python manage.py collectstatic --noinput && \
+CMD sh -c "python3 manage.py migrate --noinput && \
+           python3 manage.py collectstatic --noinput && \
            daphne -b 0.0.0.0 -p ${PORT} BackGenAI.asgi:application"
